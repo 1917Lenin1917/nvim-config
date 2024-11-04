@@ -49,6 +49,7 @@ return   { -- Autocompletion
         end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
+			---@diagnostic disable-next-line: missing-fields
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text",
@@ -60,6 +61,9 @@ return   { -- Autocompletion
 						latex_symbols = "[Latex]",
 					})
 				})
+			},
+			window = {
+				documentation = cmp.config.window.bordered()
 			},
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
