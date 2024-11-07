@@ -6,7 +6,7 @@ vim.o.mouse = "a"
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "120"
 
 -- Save undo history
 vim.opt.undofile = true
