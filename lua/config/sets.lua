@@ -34,3 +34,12 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.o.showmode = false
+
+-- folding
+-- za - fold under cursor
+-- zR - unfold all folds
+-- zM - fold all fonds
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevelstart = 99
+
