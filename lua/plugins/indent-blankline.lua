@@ -3,7 +3,10 @@ return {
 	main = "ibl",
 	---@module "ibl"
 	---@type ibl.config
-	opts = {
-		indent = { char = "▏"}
-	},
+	-- opts = {
+	-- 	indent = {
+	-- 		char = '|'
+	-- 	}
+	-- },
+	opts = {}
 }

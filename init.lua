@@ -4,8 +4,8 @@ require("config.autocmd")
 require("config.lazy")
 
 -- vim.cmd.colorscheme "catppuccin"
-vim.cmd.colorscheme "gruvbuddy"
--- vim.cmd.colorscheme "nvcode"
+-- vim.cmd.colorscheme "gruvbuddy"
+vim.cmd.colorscheme "nvcode"
 -- vim.cmd.colorscheme "codedark"
 
 -- setup colors for cmp
