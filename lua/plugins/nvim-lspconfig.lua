@@ -9,7 +9,7 @@ return {
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ 'j-hui/fidget.nvim', opts = {} },
+		{ 'j-hui/fidget.nvim',       opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
 		'hrsh7th/cmp-nvim-lsp',
@@ -114,8 +114,8 @@ return {
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+		local capabilities    = vim.lsp.protocol.make_client_capabilities()
+		capabilities          = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -126,7 +126,13 @@ return {
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-		local servers = {
+
+		local mason_registry  = require('mason-registry')
+		local vue_ls_pkg      = mason_registry.get_package('vue-language-server')
+		local vue_plugin_path = vue_ls_pkg:get_install_path()
+				.. '/node_modules/@vue/typescript-plugin'
+
+		local servers         = {
 			-- clangd = {},
 			-- gopls = {},
 			-- pyright = {},
@@ -141,11 +147,44 @@ return {
 			--
 			-- typescript.preferences.jsxAttributeCompletionStyle
 			ts_ls = {
+				filetypes = {
+					'javascript', 'javascriptreact',
+					'typescript', 'typescriptreact',
+				},
+
+				settings = {
+					typescript = {
+						inlayHints = {
+							includeInlayParameterNameHints          = 'all',
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayVariableTypeHints           = true,
+						},
+						-- ⚠ path points into Mason’s install dir
+						plugins = {
+							{
+								name      = '@vue/typescript-plugin',
+								location  = vue_plugin_path,
+								languages = { 'vue' },
+							},
+						},
+						-- Volar already formats; disable here if you use prettier
+						format = { enable = false },
+					},
+					javascript = {
+						format = { enable = false },
+					},
+				},
 				init_options = {
 					preferences = {
 						jsxAttributeCompletionStyle = "braces"
 					}
 				}
+			},
+			volar = {
+				filetypes = { 'vue' },
+				init_options = {
+					vue = { hybridMode = false },
+				},
 			},
 			lua_ls = {
 				-- cmd = {...},
@@ -176,6 +215,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			'stylua', -- Used to format Lua code
+			'vue-language-server',
 		})
 		require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
