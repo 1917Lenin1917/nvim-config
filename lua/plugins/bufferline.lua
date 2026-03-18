@@ -8,7 +8,7 @@ return {
 		bufferline.setup({
 			options = {
 				style_preset = bufferline.style_preset.default,
-				color_icons = true
+				color_icons = false
 			}
 		})
 	end
