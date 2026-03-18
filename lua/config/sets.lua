@@ -43,3 +43,4 @@ vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
 
+vim.o.clipboard = "unnamedplus"
