@@ -44,5 +44,17 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
 
 vim.o.clipboard = "unnamedplus"
-
+-- vim.g.clipboard = {
+-- 	name = "WslClipboard",
+-- 	copy = {
+-- 		["+"] = "clip.exe -i --crlf",
+-- 		["*"] = "clip.exe -i --crlf",
+-- 	},
+-- 	paste = {
+-- 		["+"] = "clip.exe -o --lf",
+-- 		["*"] = "clip.exe -o --lf",
+-- 	},
+-- 	cache_enabled = 0,
+-- }
+--
 vim.o.cmdheight = 0

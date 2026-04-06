@@ -16,5 +16,5 @@ vim.keymap.set("v", "<C-_>", "gc", { remap = true })
 vim.keymap.set("n", "<leader>H", "<CMD>lua vim.diagnostic.open_float(0, {scope='line'})<CR>", {desc="Displays diagnostic in floating window."})
 vim.keymap.set("n", "<leader>h", "<CMD>lua vim.lsp.buf.hover()<CR>", {desc="Displays hover information about the symbol under the cursor."})
 
-vim.keymap.set("v", "J", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
