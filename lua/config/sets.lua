@@ -57,4 +57,4 @@ vim.o.clipboard = "unnamedplus"
 -- 	cache_enabled = 0,
 -- }
 --
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
